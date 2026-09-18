@@ -85,3 +85,16 @@ document.querySelectorAll("[data-copy]").forEach((copyButton) => {
 
 updateColor(colorPicker.value);
 createPalette();
+
+document.querySelectorAll(".copy-preset-color").forEach((color) => {
+  color.addEventListener("click", async () => {
+    const value = color.dataset.color.toUpperCase();
+
+    await navigator.clipboard.writeText(value);
+    color.textContent = "Copié !";
+
+    setTimeout(() => {
+      color.textContent = value;
+    }, 900);
+  });
+});
