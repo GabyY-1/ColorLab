@@ -33,6 +33,29 @@ function randomHex() {
     .padStart(6, "0");
 }
 
+async function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    await navigator.clipboard.writeText(text);
+    return true;
+  }
+
+  const textarea = document.createElement("textarea");
+
+  textarea.value = text;
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+
+  const copied = document.execCommand("copy");
+
+  textarea.remove();
+
+  return copied;
+}
+
 function createPalette() {
   palette.innerHTML = "";
 
@@ -45,12 +68,15 @@ function createPalette() {
     item.textContent = color.toUpperCase();
 
     item.addEventListener("click", async () => {
-      await navigator.clipboard.writeText(color.toUpperCase());
-      item.textContent = "Copié !";
+      const copied = await copyText(color.toUpperCase());
 
-      setTimeout(() => {
-        item.textContent = color.toUpperCase();
-      }, 900);
+      if (copied) {
+        item.textContent = "Copié !";
+
+        setTimeout(() => {
+          item.textContent = color.toUpperCase();
+        }, 900);
+      }
     });
 
     palette.appendChild(item);
@@ -73,27 +99,30 @@ paletteButton.addEventListener("click", createPalette);
 document.querySelectorAll("[data-copy]").forEach((copyButton) => {
   copyButton.addEventListener("click", async () => {
     const element = document.getElementById(copyButton.dataset.copy);
+    const copied = await copyText(element.textContent);
 
-    await navigator.clipboard.writeText(element.textContent);
-    copyButton.textContent = "Copié !";
+    if (copied) {
+      copyButton.textContent = "Copié !";
 
-    setTimeout(() => {
-      copyButton.textContent = "Copier";
-    }, 900);
+      setTimeout(() => {
+        copyButton.textContent = "Copier";
+      }, 900);
+    }
   });
 });
 
 document.querySelectorAll(".copy-preset-color").forEach((color) => {
-  color.addEventListener("click", () => {
+  color.addEventListener("click", async () => {
     const value = color.dataset.color.toUpperCase();
+    const copied = await copyText(value);
 
-    navigator.clipboard.writeText(value).then(() => {
+    if (copied) {
       color.textContent = "Copié !";
 
       setTimeout(() => {
         color.textContent = value;
       }, 900);
-    });
+    }
   });
 });
 
