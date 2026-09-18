@@ -4,9 +4,12 @@ const hexValue = document.getElementById("hexValue");
 const hexText = document.getElementById("hexText");
 const rgbText = document.getElementById("rgbText");
 const palette = document.getElementById("palette");
+const randomButton = document.getElementById("randomButton");
+const paletteButton = document.getElementById("paletteButton");
 
 function hexToRgb(hex) {
   const value = hex.replace("#", "");
+
   return {
     r: parseInt(value.substring(0, 2), 16),
     g: parseInt(value.substring(2, 4), 16),
@@ -44,6 +47,7 @@ function createPalette() {
     item.addEventListener("click", async () => {
       await navigator.clipboard.writeText(color.toUpperCase());
       item.textContent = "Copié !";
+
       setTimeout(() => {
         item.textContent = color.toUpperCase();
       }, 900);
@@ -57,22 +61,24 @@ colorPicker.addEventListener("input", (event) => {
   updateColor(event.target.value);
 });
 
-document.getElementById("randomButton").addEventListener("click", () => {
+randomButton.addEventListener("click", () => {
   const color = randomHex();
+
   colorPicker.value = color;
   updateColor(color);
 });
 
-document.getElementById("paletteButton").addEventListener("click", createPalette);
+paletteButton.addEventListener("click", createPalette);
 
-document.querySelectorAll("[data-copy]").forEach((button) => {
-  button.addEventListener("click", async () => {
-    const element = document.getElementById(button.dataset.copy);
+document.querySelectorAll("[data-copy]").forEach((copyButton) => {
+  copyButton.addEventListener("click", async () => {
+    const element = document.getElementById(copyButton.dataset.copy);
+
     await navigator.clipboard.writeText(element.textContent);
-    button.textContent = "Copié !";
+    copyButton.textContent = "Copié !";
 
     setTimeout(() => {
-      button.textContent = "Copier";
+      copyButton.textContent = "Copier";
     }, 900);
   });
 });
