@@ -52,8 +52,6 @@ function createPalette() {
         item.textContent = color.toUpperCase();
       }, 900);
     });
-  });
-}
 
     palette.appendChild(item);
   }
@@ -85,11 +83,7 @@ document.querySelectorAll("[data-copy]").forEach((copyButton) => {
   });
 });
 
-updateColor(colorPicker.value);
-createPalette();
-
-function setupPresetColors() {
-  document.querySelectorAll(".copy-preset-color").forEach((color) => {
+document.querySelectorAll(".copy-preset-color").forEach((color) => {
   color.addEventListener("click", () => {
     const value = color.dataset.color.toUpperCase();
 
@@ -103,4 +97,5 @@ function setupPresetColors() {
   });
 });
 
-setupPresetColors();
+updateColor(colorPicker.value);
+createPalette();
