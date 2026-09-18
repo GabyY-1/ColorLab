@@ -184,6 +184,7 @@ h2 {
   color: white;
   font-size: 13px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .preset-info {
