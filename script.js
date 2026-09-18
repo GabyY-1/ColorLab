@@ -87,14 +87,15 @@ updateColor(colorPicker.value);
 createPalette();
 
 document.querySelectorAll(".copy-preset-color").forEach((color) => {
-  color.addEventListener("click", async () => {
+  color.addEventListener("click", () => {
     const value = color.dataset.color.toUpperCase();
 
-    await navigator.clipboard.writeText(value);
-    color.textContent = "Copié !";
+    navigator.clipboard.writeText(value).then(() => {
+      color.textContent = "Copié !";
 
-    setTimeout(() => {
-      color.textContent = value;
-    }, 900);
+      setTimeout(() => {
+        color.textContent = value;
+      }, 900);
+    });
   });
 });
