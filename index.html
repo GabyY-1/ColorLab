@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ColorLab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>ColorLab</h1>
+      <p>Crée, teste et copie tes couleurs.</p>
+    </header>
+
+    <section class="color-panel">
+      <div id="colorPreview" class="color-preview"></div>
+
+      <div class="picker-row">
+        <input id="colorPicker" type="color" value="#6C63FF">
+        <div>
+          <span>Couleur actuelle</span>
+          <strong id="hexValue">#6C63FF</strong>
+        </div>
+      </div>
+
+      <div class="values">
+        <div class="value-box">
+          <span>HEX</span>
+          <strong id="hexText">#6C63FF</strong>
+          <button data-copy="hexText">Copier</button>
+        </div>
+
+        <div class="value-box">
+          <span>RGB</span>
+          <strong id="rgbText">108, 99, 255</strong>
+          <button data-copy="rgbText">Copier</button>
+        </div>
+      </div>
+
+      <button id="randomButton" class="random-button">Couleur aléatoire</button>
+    </section>
+
+    <section class="palette-section">
+      <div class="section-title">
+        <div>
+          <h2>Palette</h2>
+          <p>Génère 5 couleurs en un clic.</p>
+        </div>
+        <button id="paletteButton">Nouvelle palette</button>
+      </div>
+
+      <div id="palette" class="palette"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
