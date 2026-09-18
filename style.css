@@ -159,8 +159,8 @@ h2 {
 }
 
 .preset-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 16px;
 }
 
@@ -180,17 +180,16 @@ h2 {
 .preset-colors {
   display: flex;
   gap: 10px;
-  width: 100%;
+  width: calc(100% - 20px);
   height: 150px;
+  margin: 10px;
   overflow: hidden;
   border-radius: 12px;
 }
 
 .preset-colors span {
-  flex: 0 1 calc((100% - 40px) / 5);
-  width: calc((100% - 40px) / 5);
+  flex: 1 1 0;
   min-width: 0;
-  max-width: calc((100% - 40px) / 5);
   height: 150px;
   border-radius: 12px;
   display: flex;
@@ -249,10 +248,6 @@ h2 {
 
   .palette-color {
     min-height: 90px;
-  }
-
-  .preset-grid {
-    grid-template-columns: 1fr;
   }
 
   .preset-colors {
