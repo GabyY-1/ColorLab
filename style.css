@@ -106,10 +106,12 @@ button {
   background: #17181c;
   color: white;
   cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 button:hover {
   opacity: 0.85;
+  transform: translateY(-1px);
 }
 
 .random-button {
@@ -146,6 +148,13 @@ h2 {
   color: white;
   font-size: 13px;
   cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+.palette-color:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.08);
+  box-shadow: 0 8px 18px rgba(20, 20, 30, 0.14);
 }
 
 .preset-grid {
@@ -185,6 +194,13 @@ h2 {
   font-size: 13px;
   overflow: hidden;
   cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+.preset-colors span:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.08);
+  box-shadow: 0 8px 18px rgba(20, 20, 30, 0.14);
 }
 
 .preset-info {
